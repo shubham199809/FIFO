@@ -2,7 +2,7 @@
 // Top level Verilog code for FIFO Memory
 module fifo_mem(data_out,fifo_full, fifo_empty, fifo_threshold, fifo_overflow, fifo_underflow,clk, rst_n, wr, rd, data_in);  
   input wr, rd, clk, rst_n;  
-  input[7:0] data_in;   // FPGA projects using Verilog/ VHDL
+  input[7:0] data_in;   
   output[7:0] data_out;  
   output fifo_full, fifo_empty, fifo_threshold, fifo_overflow, fifo_underflow;  
   wire[4:0] wptr,rptr;  
@@ -12,8 +12,7 @@ module fifo_mem(data_out,fifo_full, fifo_empty, fifo_threshold, fifo_overflow, f
   memory_array top3(data_out, data_in, clk,fifo_we, wptr,rptr);  
   status_signal top4(fifo_full, fifo_empty, fifo_threshold, fifo_overflow, fifo_underflow, wr, rd, fifo_we, fifo_rd, wptr,rptr,clk,rst_n);  
  endmodule  
-// fpga4student.com: FPga projects, Verilog projects, VHDL projects
-// Verilog project: Verilog code for FIFO memory
+
 // Verilog code for Memory Array submodule 
  module memory_array(data_out, data_in, clk,fifo_we, wptr,rptr);  
   input[7:0] data_in;  
@@ -40,14 +39,13 @@ module fifo_mem(data_out,fifo_full, fifo_empty, fifo_threshold, fifo_overflow, f
   assign fifo_rd = (~fifo_empty)& rd;  
   always @(posedge clk or negedge rst_n)  
   begin  
-   if(~rst_n) rptr <= 6'b000000;  
+   if(~rst_n) rptr <= 5'b00000;  
    else if(fifo_rd)  
-    rptr <= rptr + 6'b000001;  
+    rptr <= rptr + 5'b00001;  
    else  
     rptr <= rptr;  
   end  
  endmodule  
-
 
 // Verilog code for Status Signals sub-module 
  module status_signal(fifo_full, fifo_empty, fifo_threshold, fifo_overflow, fifo_underflow, wr, rd, fifo_we, fifo_rd, wptr,rptr,clk,rst_n);  
@@ -100,9 +98,9 @@ module fifo_mem(data_out,fifo_full, fifo_empty, fifo_threshold, fifo_overflow, f
   assign fifo_we = (~fifo_full)&wr;  
   always @(posedge clk or negedge rst_n)  
   begin  
-   if(~rst_n) wptr <= 6'b000000;  
+   if(~rst_n) wptr <= 5'b00000;  
    else if(fifo_we)  
-    wptr <= wptr + 6'b000001;  
+    wptr <= wptr + 5'b00001;  
    else  
     wptr <= wptr;  
   end  
