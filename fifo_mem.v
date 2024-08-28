@@ -29,8 +29,8 @@ module fifo_mem(data_out,fifo_full, fifo_empty, fifo_threshold, fifo_overflow, f
   end  
   assign data_out = data_out2[rptr[3:0]];  
  endmodule  
-// fpga4student.com: FPga projects, Verilog projects, VHDL projects
-// Verilog project: Verilog code for FIFO memory
+
+
 // Verilog code for Read Pointer sub-module 
  module read_pointer(rptr,fifo_rd,rd,fifo_empty,clk,rst_n);  
   input rd,fifo_empty,clk,rst_n;  
@@ -47,8 +47,8 @@ module fifo_mem(data_out,fifo_full, fifo_empty, fifo_threshold, fifo_overflow, f
     rptr <= rptr;  
   end  
  endmodule  
-// fpga4student.com: FPga projects, Verilog projects, VHDL projects
-// Verilog project: Verilog code for FIFO memory
+
+
 // Verilog code for Status Signals sub-module 
  module status_signal(fifo_full, fifo_empty, fifo_threshold, fifo_overflow, fifo_underflow, wr, rd, fifo_we, fifo_rd, wptr,rptr,clk,rst_n);  
   input wr, rd, fifo_we, fifo_rd,clk,rst_n;  
@@ -90,8 +90,7 @@ module fifo_mem(data_out,fifo_full, fifo_empty, fifo_threshold, fifo_overflow, f
      fifo_underflow <= fifo_underflow;  
   end  
  endmodule  
-// fpga4student.com: FPga projects, Verilog projects, VHDL projects
-// Verilog project: Verilog code for FIFO memory
+
 // Verilog code for Write Pointer sub-module 
  module write_pointer(wptr,fifo_we,wr,fifo_full,clk,rst_n);  
   input wr,fifo_full,clk,rst_n;  
